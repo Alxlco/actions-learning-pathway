@@ -16,4 +16,15 @@ jobs:
         run: npm install
       - name: builds application
         run: npm run build
-    
+  test: 
+   needs: build
+   runs-on: ubuntu-latest
+   steps:
+     - name: checkout repo
+       uses: actions/checkout@v3
+     - name: uses node.js
+       uses: actiona/setup-node@v3
+       with:
+         node-version: '18.x'
+     - run: npm install
+     - run: npm test
